@@ -7,12 +7,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import jdk.jshell.JShell;
+//import jdk.jshell.JShell;
 
 @Path("/calc")
 @RequestScoped
 public class RESTCalculationHandler {
-	private final JShell jshell = JShell.create();
+	//private final JShell jshell = JShell.create();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
