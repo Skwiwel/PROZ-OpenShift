@@ -27,11 +27,18 @@ public class RESTCalculationHandler {
 	private Interpreter beanShell = new Interpreter();
 	private ObjectMapper mapper = new ObjectMapper();
 	
+	/**
+	 * Class structure for preparing the response message in Json
+	 */
 	public class ResultResponse {
 		public String result;
 		public String exception;
 	}
 
+	/**
+	 * Prepares the factorial function in beanShell
+	 * @throws EvalError
+	 */
 	private void initBeanShell() throws EvalError {
 		final String factorialDef = ""
 				+ "double factorial(double number) {"
@@ -51,8 +58,6 @@ public class RESTCalculationHandler {
 		ResultResponse resultResponse = new ResultResponse();
 		try {
 			ObjectNode jsonTree = (ObjectNode) mapper.readTree(stream);
-			//v
-			//System.out.println(jsonTree.toString());
 			initBeanShell();
 			String equation = jsonTree.get("equation").asText();
 			resultResponse.result = beanShell.eval(equation).toString();
